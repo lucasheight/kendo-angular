@@ -1,0 +1,11 @@
+<h2>{{title}}</h2>
+<form #templateForm="ngForm">
+  <input type="number" [value]="val" />
+  <kendo-numerictextbox [factor]="100"  name="percent" [(ngModel)]="val" format="p3">
+
+  </kendo-numerictextbox>
+
+  <p>
+    value:{{val}} 
+  </p>
+</form>
