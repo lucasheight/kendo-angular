@@ -1,2 +1,2 @@
 # kendo-angular
-Repository of kendo-angular extensions
+Repository of kendo-angular extensions and helpers
