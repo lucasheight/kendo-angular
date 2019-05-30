@@ -1,0 +1,35 @@
+<h2>{{title}}</h2>
+<form #templateForm="ngForm">
+  <table>
+    <thead>
+      <tr>
+        <td>Default Input</td>
+        <td>Kendo-numerictextbox % format</td>
+        <td>Kendo-numerictextbox % format with factor 100</td>
+        <td>Kendo-numerictextbox factor value error</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="number" name="test1" [value]="val" step="1" [(ngModel)]="val" /></td>
+        <td>
+          <kendo-numerictextbox name="test2" [(ngModel)]="val" format="p0"></kendo-numerictextbox>
+        </td>
+        <td>
+          <kendo-numerictextbox name="test3" [factor]="100" [(ngModel)]="val" format="p0">
+          </kendo-numerictextbox>
+        </td>
+        <td>
+          <kendo-numerictextbox name="test4" [factor]="'error'" [(ngModel)]="val" format="p0">
+          </kendo-numerictextbox>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <p>
+    value:{{val}}
+  </p>
+</form>

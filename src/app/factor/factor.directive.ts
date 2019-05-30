@@ -14,7 +14,10 @@ export class FactorDirective implements OnInit, OnDestroy, AfterViewInit {
   constructor(private el: NumericTextBoxComponent) { }
 
   ngOnInit(): void {
-    //debugger;   
+    if (typeof this.fact !== "number") {
+      throw "Factor must be a number"
+
+    }
     this.el.registerOnChange = (fn) => {
       //console.log("registerOnchange")
       this.propogateChange = fn;

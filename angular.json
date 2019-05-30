@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "factor": {
+    "kendo-angular": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/factor",
+            "outputPath": "dist/kendo-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "factor:build"
+            "browserTarget": "kendo-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "factor:build:production"
+              "browserTarget": "kendo-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "factor:build"
+            "browserTarget": "kendo-angular:build"
           }
         },
         "test": {
@@ -105,7 +105,7 @@
         }
       }
     },
-    "factor-e2e": {
+    "kendo-angular-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -113,11 +113,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "factor:serve"
+            "devServerTarget": "kendo-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "factor:serve:production"
+              "devServerTarget": "kendo-angular:serve:production"
             }
           }
         },
@@ -133,5 +133,5 @@
       }
     }
   },
-  "defaultProject": "factor"
+  "defaultProject": "kendo-angular"
 }
