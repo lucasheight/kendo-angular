@@ -1,6 +1,10 @@
-# Factor
+# Kendo-Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5.
+This project host some useful extension for working with kendo-angular.
+
+## Factor directive
+`https://github.com/lucasheight/kendo-angular/tree/master/src/app/factor`
+Adds back the factor property that exists in kendo jquery version of the NumericTextBox `https://docs.telerik.com/kendo-ui/api/javascript/ui/numerictextbox/configuration/factor`. 
 
 ## Development server
 
