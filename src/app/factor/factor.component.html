@@ -16,8 +16,10 @@
           <kendo-numerictextbox name="test2" [(ngModel)]="val" format="p0"></kendo-numerictextbox>
         </td>
         <td>
-          <kendo-numerictextbox name="test3" [factor]="100" [(ngModel)]="val" format="p0">
+          <kendo-numerictextbox name="test3" [factor]="100" [(ngModel)]="val" format="p0" (valueChange)="onValueChange($event)">
           </kendo-numerictextbox>
+          <br>
+          ValueChange: {{valueChange}}
         </td>
         <td>
           <kendo-numerictextbox name="test4" [factor]="'error'" [(ngModel)]="val" format="p0">

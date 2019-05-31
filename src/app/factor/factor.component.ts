@@ -7,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
     "table{border:1px solid grey}",
     "th,td{padding:1em}",
     "td{border:solid lightgrey 1px"
-]
+  ]
 })
 export class FactorComponent implements OnInit {
   val: number = 0.5;
+  valueChange:number;
   title = 'factor';
   constructor() { }
 
   ngOnInit() {
   }
-
+  onValueChange = (e) => {
+    this.valueChange = e;
+  }
 }

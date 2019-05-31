@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, OnDestroy, AfterViewInit, HostListener, Input, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, OnInit, OnDestroy, AfterViewInit,  Input, EventEmitter, Output } from '@angular/core';
 import { NumericTextBoxComponent } from '@progress/kendo-angular-inputs';
 import { Subject } from 'rxjs';
 import { takeUntil } from "rxjs/operators";
@@ -22,7 +22,9 @@ export class FactorDirective implements OnInit, OnDestroy, AfterViewInit {
       //console.log("registerOnchange")
       this.propogateChange = fn;
     }
+   // this.el.registerOnTouched = () => { }
   }
+  @Output() valueChange: EventEmitter<number> = new EventEmitter();
   ngAfterViewInit(): void {
 
     this.el.onFocus.pipe(takeUntil(this.destroy$)).subscribe(s => {
@@ -37,8 +39,10 @@ export class FactorDirective implements OnInit, OnDestroy, AfterViewInit {
     })
     this.el.valueChange.pipe(takeUntil(this.destroy$))
       .subscribe(s => {
-        this.propogateChange(s / this.fact);
-        // console.log("valueChanges", s)
+        let newVal = this.el.value / this.fact;
+        this.valueChange.emit(newVal);
+        this.propogateChange(newVal);
+        //console.log("valueChanges", this.el.value / this.fact)
       })
   }
   ngOnDestroy(): void {
