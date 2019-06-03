@@ -1,6 +1,5 @@
 import { Observable, BehaviorSubject, iif, of, Subject } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { State, toODataString } from '@progress/kendo-data-query';
 import { tap, map, filter } from 'rxjs/operators';
 import { IsGuid } from '../helpers/IsGuid';
 import { IStoreNotifier, IStoreSettings } from './IStore';
@@ -8,24 +7,14 @@ import { action } from './store.enum';
 
 
 
-export interface IODataStore<T> {
-    baseUrl: string;
-    query(state: State, queryString: string);
-    get<K extends keyof T>(value: any, key: K): Observable<T>;
-    insert(item: T);
-    update<K extends keyof T>(item: T, key: K): void;
-    patch<K extends keyof T>(item: T, key: K): void;
-    remove<K extends keyof T>(item: T, key: K): void;
-}
 
 
 /**
  * Creates and Odata service store that follows the observable store pattern.
  * Provides default odata rest methods  
  */
-export abstract class ODataStore<T> implements IODataStore<T> {
+export abstract class ODataStore<T>  {
     private _initState: IOdataCollection<T> = { "@odata.count": undefined, value: <T[]>[{}] }
-    private _gridState: State = { skip: 0, take: 20 }
     abstract baseUrl: string;
     protected _state$: BehaviorSubject<IOdataCollection<T>> = new BehaviorSubject(undefined);
     public state$: Observable<IOdataCollection<T>> = this._state$.asObservable().pipe(filter(f => typeof f === "object"));/* only get objects not the default state */
@@ -47,12 +36,8 @@ export abstract class ODataStore<T> implements IODataStore<T> {
 
     }
 
-    public query = (state: State = null, queryString: string = null) => {
+    public query = (queryString: string = null) => {
         let segments: string[] = [];
-        if (state) {
-            segments.push(...toODataString(state).split('&'))
-
-        }
         if (queryString) {
             segments.push(...queryString.split('&'))
         }
@@ -177,7 +162,7 @@ export abstract class ODataStore<T> implements IODataStore<T> {
 
     protected updateStore = <K extends keyof T>(item: T, operation: "insert" | "update" | "delete", keys: K | K[] = null): void => {
 
-        let _store = Object.assign({}, this._initState,this._state$.getValue());
+        let _store = Object.assign({}, this._initState, this._state$.getValue());
         let newState: IOdataCollection<T>;
         let values: T[];
         switch (operation) {
@@ -207,7 +192,7 @@ export abstract class ODataStore<T> implements IODataStore<T> {
                 this.dispatchNotifier(action.Delete, item);
                 break;
             case "update":
-                let res = Object.assign({}, this._initState,this._state$.getValue());
+                let res = Object.assign({}, this._initState, this._state$.getValue());
                 let foundIdx: number;
                 if (Array.isArray(keys)) {
                     values = keys.reduce((acc, curr) => {
@@ -242,7 +227,7 @@ export abstract class ODataStore<T> implements IODataStore<T> {
         let store = this._state$.getValue();
         switch (act) {
             case action.Query:
-                note.message = `Query returned ${store?store.value?store.value.length:0:0} records.`;
+                note.message = `Query returned ${store ? store.value ? store.value.length : 0 : 0} records.`;
                 break;
             case action.Get:
                 note.message = `Get action completed`;

@@ -7,7 +7,7 @@
     "angular",
     "kendo",
     "rxjs store",
-    "kendo odata store"
+    "odata store"
   ],
   "scripts": {
     "ng": "ng",
