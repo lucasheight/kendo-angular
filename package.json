@@ -1,6 +1,14 @@
 {
-  "name": "factor",
-  "version": "0.0.0",
+  "name": "kendo-angular",
+  "author": "Lynden Garrett",
+  "version": "0.0.1",
+  "repository": {"url":"https://github.com/lucasheight/kendo-angular"},
+  "keywords": [
+    "angular",
+    "kendo",
+    "rxjs store",
+    "kendo odata store"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
