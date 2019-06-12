@@ -2,7 +2,13 @@ import { map } from "../../../../node_modules/rxjs/operators";
 import { GridDataResult } from "../../../../node_modules/@progress/kendo-angular-grid";
 import { OperatorFunction } from "../../../../node_modules/rxjs";
 
-
-/**Maps an IOdataCollection to a kendo GridDataResult */
-export const gridMap = <T>(): OperatorFunction<IOdataCollection<T>, GridDataResult> => 
-    input$ => input$.pipe(map(m => <GridDataResult>{ data: m.value, total: m["@odata.count"] }))
+/**Maps an array or IOdataCollection to a kendo GridDataResult
+ * @param count {number} overides the count from the array length or odata.count returned from request
+ * @returns OperatorFunction
+ */
+export const gridMap = <T>(count:number = undefined): OperatorFunction<IOdataCollection<T> | T[], GridDataResult> =>
+   input$ => input$.pipe(map(m => Array.isArray(m)? 
+                             <GridDataResult>{ data: m, total:count|| m.length }: 
+                             <GridDataResult>{ data: m.value, total:count || m["@odata.count"] }
+                            )
+                        )
