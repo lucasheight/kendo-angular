@@ -34,7 +34,7 @@
     "@progress/kendo-angular-popup": "^2.6.0",
     "@progress/kendo-data-query": "^1.5.1",
     "@progress/kendo-drawing": "^1.5.12",
-    "@progress/kendo-theme-default": "^4.0.0",
+    "@progress/kendo-theme-default": "^4.2.0",
     "core-js": "^3.1.4",
     "rxjs": "~6.5.2",
     "rxjs-compat": "^6.0.0",
