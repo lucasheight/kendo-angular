@@ -29,7 +29,7 @@
     "@angular/platform-browser": "^8.2.14",
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
-    "@progress/kendo-angular-buttons": "^5.2.1",
+    "@progress/kendo-angular-buttons": "^5.4.1",
     "@progress/kendo-angular-grid": "^3.14.4",
     "@progress/kendo-angular-inputs": "^5.2.2",
     "@progress/kendo-angular-intl": "^1.7.1",
